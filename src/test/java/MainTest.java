@@ -6,6 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MainTest {
     @Test
+    @DisplayName("Test password length equals 7")
+    public void checkPasswordLengthTest_whenLengthEquals7_thenReturnFalse() {
+        //GIVEN
+        String value = "Testpas";
+        //WHEN
+        boolean result = Main.checkPasswordLength(value);
+        //THEN
+        assertFalse(result);
+    }
+    @Test
     @DisplayName("Test password length equals 8")
     public void checkPasswordLengthTest_whenLengthEquals8_thenReturnTrue() {
         //GIVEN
@@ -17,13 +27,13 @@ public class MainTest {
     }
     @Test
     @DisplayName("Test password length equals 9")
-    public void checkPasswordLengthTest_whenLengthEquals9_thenReturnFalse() {
+    public void checkPasswordLengthTest_whenLengthEquals9_thenReturnTrue() {
         //GIVEN
         String value = "Testpassw";
         //WHEN
         boolean result = Main.checkPasswordLength(value);
         //THEN
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test

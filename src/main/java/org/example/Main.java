@@ -1,13 +1,15 @@
 package org.example;
 import java.util.regex.Pattern;
+import java.util.Random;
+
 
 public class Main {
-    /*    public static void main(String[] args) {
 
-            System.out.println("Hello world!");
-        }*/
+    public static void main(String[] args) {
+        System.out.println(getRandomPassword());
+    }
     public static boolean checkPasswordLength(String password) {
-        return password.length() == 8;
+        return password.length() >= 8;
     }
 
     public static boolean checkPasswordContainsDigits(String password) {
@@ -56,5 +58,36 @@ public class Main {
         else{
             return true;
         }
+    }
+
+    public static String getRandomPassword() {
+        String randomPassword = getAlphaNumericString();
+        while(!checkPasswordLength(randomPassword)||
+                !checkPasswordContainsDigits(randomPassword)||
+                !checkPasswordContainsUpperAndLowerCaseLetters(randomPassword)||
+                checkPasswordContainsCommonlyUsedPasswords(randomPassword)||
+                !checkPasswordContainsSpecialCharacters(randomPassword)
+        ){
+            randomPassword = getAlphaNumericString();
+        }
+        return randomPassword;
+    }
+
+    public static String getAlphaNumericString() {
+        Random rand = new Random();
+        int randNumber = rand.nextInt(20);
+
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz"
+                + "!?<>°-_";
+
+        StringBuilder sb = new StringBuilder(randNumber);
+
+        for (int i = 0; i < randNumber; i++) {
+            int index = (int)(AlphaNumericString.length() * Math.random());
+            sb.append(AlphaNumericString.charAt(index));
+        }
+        return sb.toString();
     }
 }
