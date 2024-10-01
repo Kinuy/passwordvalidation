@@ -1,4 +1,5 @@
 package org.example;
+import java.util.regex.Pattern;
 
 public class Main {
     /*    public static void main(String[] args) {
@@ -13,21 +14,47 @@ public class Main {
 
         return password.matches(".*\\d.*");
     }
-    public static boolean checkPasswordContainsUpperAndLowerCaseLetters(String password){
-        for (char c : password.toCharArray()) {
-            if (Character.isLowerCase(c) || Character.isUpperCase(c)) {
-                return true;
+
+    public static boolean checkPasswordContainsUpperAndLowerCaseLetters(String password) {
+        for (char l : password.toCharArray()) {
+            // check for lower case
+            if (Character.isLowerCase(l)) {
+                for (char u : password.toCharArray()) {
+                    // check for upper case
+                    if (Character.isUpperCase(u)) {
+                        return true;
+                    }
+                }
+            }
+            // check for upper case
+            else{
+                for (char u : password.toCharArray()) {
+                    // check for lower case
+                    if (Character.isLowerCase(u)) {
+                        return true;
+                    }
+                }
             }
         }
         return false;
     }
-    public static boolean checkPasswordContainsCommonlyUsedPasswords(String password){
-        String[] commonlyUsedPassword = {"Password1","Aa345678"};
+
+    public static boolean checkPasswordContainsCommonlyUsedPasswords(String password) {
+        String[] commonlyUsedPassword = {"Password1", "Aa345678"};
         for (String c : commonlyUsedPassword) {
             if (password.equals(c)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static boolean checkPasswordContainsSpecialCharacters(String password) {
+        if (Pattern.matches("[a-zA-Z]+", password)){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

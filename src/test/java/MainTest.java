@@ -36,6 +36,16 @@ public class MainTest {
         //THEN
         assertTrue(result);
     }
+    @Test
+    @DisplayName("Test password contains no digits")
+    public void checkPasswordContainsDigitsTest_whenNoDigit_thenReturnFalse() {
+        //GIVEN
+        String value = "Testpass";
+        //WHEN
+        boolean result = Main.checkPasswordContainsDigits(value);
+        //THEN
+        assertFalse(result);
+    }
 
     @Test
     @DisplayName("Test password contains upper- and lowercase")
@@ -47,7 +57,26 @@ public class MainTest {
         //THEN
         assertTrue(result);
     }
-
+    @Test
+    @DisplayName("Test password contains all lowercase")
+    public void checkPasswordContainsUpperAndLowerCaseLettersTest_whenAllLowerCaseLetter_thenReturnFalse() {
+        //GIVEN
+        String value = "testpass";
+        //WHEN
+        boolean result = Main.checkPasswordContainsUpperAndLowerCaseLetters(value);
+        //THEN
+        assertFalse(result);
+    }
+    @Test
+    @DisplayName("Test password contains all uppercase")
+    public void checkPasswordContainsUpperAndLowerCaseLettersTest_whenAllUpperCaseLetter_thenReturnFalse() {
+        //GIVEN
+        String value = "TESTPASS";
+        //WHEN
+        boolean result = Main.checkPasswordContainsUpperAndLowerCaseLetters(value);
+        //THEN
+        assertFalse(result);
+    }
     @Test
     @DisplayName("Test contains commonly used passwords")
     public void checkPasswordContainsCommonlyUsedPasswordsTest_whenCommonlyUsedPwd_thenReturnTrue() {
@@ -55,6 +84,16 @@ public class MainTest {
         String value = "Password1";
         //WHEN
         boolean result = Main.checkPasswordContainsCommonlyUsedPasswords(value);
+        //THEN
+        assertTrue(result);
+    }
+    @Test
+    @DisplayName("Test contains Special character")
+    public void checkPasswordContainsSpecialCharactersTest_whenSpecialCharacter_thenReturnTrue() {
+        //GIVEN
+        String value = "Password!";
+        //WHEN
+        boolean result = Main.checkPasswordContainsSpecialCharacters(value);
         //THEN
         assertTrue(result);
     }
